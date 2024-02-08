@@ -14,20 +14,18 @@ function calculateMoney(ticket) {
 
 // problem 2
 
-// function checkName(names) {
-//   const characters = ["a", "y", "e", "o", "u", "w"];
-//   const lastLetter = names.length - 1;
-//   if (characters.includes(lastLetter)) {
-//     return "good name";
-//   } else if (typeof names !== "string") {
-//     return "inv";
-//   } else {
-//     return "bad name";
-//   }
-// }
-
-// const checkNames = checkName("ma");
-// console.log(checkNames);
+function checkName(names) {
+  if (typeof names !== "string") {
+    return "invalid";
+  }
+  const characters = ["a", "y", "e", "o", "u", "w"];
+  const lastLetter = names.charAt(names.length - 1);
+  if (characters.includes(lastLetter)) {
+    return "good name";
+  } else {
+    return "bad name";
+  }
+}
 
 // problem 3
 function deleteInvalids(array) {
@@ -41,3 +39,35 @@ function deleteInvalids(array) {
 }
 
 // problem 4
+function password(obj) {
+  const {name, birthYear, siteName} = obj;
+  const userBirthYear = JSON.stringify(birthYear);
+  if (userBirthYear.length < 4) {
+    return "invalid";
+  }
+  const siteNames =
+    siteName.charAt(0).toUpperCase() + siteName.slice(1).toLowerCase();
+  const generatePassword = siteNames + "#" + name + "@" + birthYear;
+  return generatePassword;
+}
+
+// problem 5
+function monthlySavings(arr, livingCost) {
+  if (typeof livingCost !== "number") {
+    return "invalid input";
+  }
+  let highestPayment = 3000;
+  const incomeTax = (20 / 100) * highestPayment;
+  let savings = 0;
+  for (const item of arr) {
+    if (item >= highestPayment) {
+      const tax = item - incomeTax;
+      savings += tax;
+    } else if (livingCost >= 10000) {
+      return "earn more";
+    } else {
+      savings += item;
+    }
+  }
+  return savings - livingCost;
+}
