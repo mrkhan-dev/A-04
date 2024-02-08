@@ -40,5 +40,4 @@ function deleteInvalids(array) {
   return filter;
 }
 
-const inputArray = deleteInvalids([NaN, 1, 12, 0, -1, undefined, "string"]);
-console.log(inputArray);
+// problem 4
